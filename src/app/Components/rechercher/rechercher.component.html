@@ -1,0 +1,17 @@
+<div class="container"></div>
+
+<input type="text" 
+[(ngModel)]="titre" 
+aria-label="Search"
+class="form-control rounded-pill border-3 border-warning w-50 "  
+placeholder="rechercher ici par titre de service"/>
+
+<div *ngIf="search()!=undefined">
+    <div class="row">
+    <div  class="col-sm-4" *ngFor="let serv of search()">
+        <app-card-service [service]="serv"></app-card-service>
+    </div>
+</div>
+</div>
+<div *ngIf="search()==undefined">vous n'avez pas encore chercher</div>
+

@@ -1,0 +1,96 @@
+<nav width="100%" style="text-align:center;background-repeat:no-repeat;background-image: url('https://contemporain.com/images/dossiers/art/mouvement-contemporain-xl.jpg')">
+<form [formGroup]="FormTri" (ngSubmit)="onSubmit()">
+    <strong>categorie du service:</strong>
+    <div *ngFor="let c of categories">
+        <span margin="2%">{{c.libelle}} </span><input type="radio" id="cat" formControlName="categorie" [value]="c.id">
+    </div>
+    <strong>prix max du service  :</strong><br>
+    <input type="number" formControlName="prixMax" ><br>
+    <strong>prix min du service  :</strong><br>
+    <input type="number" formControlName="prixMin" ><br>
+<strong>supprimer mon choix </strong>
+<input type="checkbox" formControlName="choix" [value]="1">
+<br>
+    <button type="submit" class="btn btn-outline-primary" [disabled]="FormTri.invalid" >
+    Afficher
+    </button>
+    </form>
+</nav>
+
+<div class="container">
+<section>
+    <div class="row" *ngIf="tabServiceFiltre?.length==tabService?.length">
+        <div class="col-sm-4" *ngFor= "let p of tabService">
+          <app-card-service [service]='p'></app-card-service>
+        </div>
+        <div *ngIf="id_artiste!=null">
+          <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+            <a class="card-body" routerLink="/poster">
+              <img src="../../../assets/+.jpg" alt="aj" width="50%" height="50%" />
+            </a>
+            <div class="card-footer">
+              Ajouter
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="tabServiceFiltre?.length<tabService?.length">
+        <div class="col-sm-4" *ngFor= "let p of tabServiceFiltre">
+          <app-card-service  [service]='p'></app-card-service>
+          
+        </div>
+        <div *ngIf="id_artiste!=null">
+          <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+            <a class="card-body" routerLink="/poster">
+              <img src="../../src/assets/+.pnj" alt="aj" width="50%" height="50%" />
+            </a>
+          <div class="card-footer">
+            Ajouter
+          </div>
+        </div>
+        </div>
+      </div>
+</section>
+</div>
+
+
+
+<div class="wrapper row2">
+  <div class="hoc container clear"> 
+    <div class="filtrer">
+      <h3>Filtrer</h3>
+      <h4>Catégorie</h4>
+      <input type="checkbox"/>Photographie
+      <input type="checkbox"/>Musique
+      <input type="checkbox"/>Peinture
+      <input type="checkbox"/>Sculpture
+      <input type="checkbox"/>Poéme
+      <label>Prix minimum</label>
+      <input type="number"/>
+      <label>Prix maximum</label>
+      <input type="number"/>
+      <input type="checkbox"/>
+      <label>Supprimer mon choix</label>
+    </div>
+    <ul class="nospace group team col-md-12 align-items-stretch">
+      <li class="one_quarter" *ngFor= "let ser of tabService">
+        <figure>
+          <a class="imgover" href="#">
+            <img class="imag" [src]="ser.image" alt="">
+          </a>
+          <figcaption>
+            <strong>{{ser.idArtiste}}</strong> 
+            <em>{{ser.titre}}</em><br>
+            <em *ngFor="let c of categories">
+              <em *ngIf="c.id==ser.cat">Categorie: {{c.libelle}}</em>
+            </em><br>
+            <em>{{ser.prix}} DT</em><br>
+            <button class="btn btn-success" id="details" style="background-color:green;padding:5px" [routerLink]="['/liste',ser.id]">Détails</button>
+          </figcaption>
+        </figure>
+      </li>
+    </ul><br>
+  </div>
+</div>
+

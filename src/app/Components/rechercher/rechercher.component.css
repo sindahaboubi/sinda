@@ -1,0 +1,17 @@
+.container{
+    width:90%;
+    height:360px;
+    margin-left: 10%;
+    border-radius: 5px;
+    background-image: url('./../../../assets/imgrech.jpg');
+}
+::-webkit-input-placeholder{
+    text-align: center;
+    
+}
+
+input{
+    margin-top:-20px;
+    margin-left :22%; 
+    height: 60px; 
+}

@@ -1,0 +1,21 @@
+<div class="card m-3" >
+    <div class="card-head text-center">
+        <strong><u>{{service.titre}}</u></strong>
+    </div>
+        <div class="card-body">
+            <img [src]=service.image width="70%" height="70%" style="position:relative;left:15%">
+        </div>
+    <div class="container row card-title">
+        <div class="example-button-container">
+            <div *ngFor="let c of categories">
+            <strong *ngIf="c.id==service.cat">Categorie: {{c.libelle}}</strong><br>
+            </div>
+            <strong>Description: </strong>
+            {{service.description}}<br>
+            <strong><i></i>Prix: </strong>{{service.prix}}
+        </div>
+    </div>
+        <div class="card-footer">           
+            <button class="btn btn-outline-warning" style="position:relative;left:75%" [routerLink]="['/liste',service.id]" >Details</button>
+        </div>
+</div>

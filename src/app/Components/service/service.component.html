@@ -1,0 +1,291 @@
+    <div class="col-lg-8 border main-section bg-white" style="float:left;">
+        <div class="row m-0">
+            <div class="col-lg-5 left-side-product-box pb-3">
+                <img [src]="currentProduit.image" class="border p-3">
+            </div>
+            <div class="col-lg-7">
+                <div class="right-side-pro-detail border p-3 m-0">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <p class="m-0 p-0">Titre : {{currentProduit.titre}}</p>
+                            <span>Publiée le {{currentProduit.dateCrea|date:'dd/MM/yyyy'}}</span>
+                        </div>
+                        <div class="col-lg-12 pt-2">
+                            <h5>Détails</h5>
+                            <span>{{currentProduit.description}}</span>
+                            <hr class="m-0 pt-2 mt-2">
+                            <div class="col-lg-12">
+                                <p class="m-0 p-0 price-pro"> Prix : {{currentProduit.prix}} DT</p>
+                                <hr class="p-0 m-0">
+                            </div>
+                        </div>
+                        <div class="col-lg-12" *ngIf="currentProduit.cat==1">
+                            <p class="tag-section">
+                                <strong>Artiste : </strong>
+                                {{currentProduit.idArtiste}}
+                            </p>
+                        </div>
+                        <div *ngIf="!connecte" >
+                            <div class="col-lg-12 mt-3">
+                                <div class="row">
+                                    <div class="col-lg-6 pb-2">
+                                        <button (click)="opensig(id,'service')" *ngIf="(auth_client!=null)" [disabled]="currentProduit.etat!='dispo'" class="btn btn-danger w-100">Signaler</button>
+                                        <button  (click)="openDialogAuth()" *ngIf="auth_client==null" [disabled]="currentProduit.etat!='dispo'" class="btn btn-danger w-100">Signaler</button>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <button  (click)="openDialog()" *ngIf="auth_client!=null" [disabled]="currentProduit.etat!='dispo'" class="btn btn-success w-100">Commander</button>
+                                        <button  (click)="openDialogAuth()" *ngIf="auth_client==null" [disabled]="currentProduit.etat!='dispo'" class="btn btn-success w-100">Commander</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div [hidden]="sig">
+                            <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label>Description du signalement</mat-label>
+                                <input matInput id="sigcomm" #sigcomm>
+                              </mat-form-field>
+                              <br>
+                            <button mat-button class="btn btn-outline-dark" (click)="signaler(sigcomm.value)">signaler</button>
+                        </div>
+                        <div id="signaleS"></div>
+
+                        <div *ngIf="connecte">
+                            <div class="row">
+                                <div class="col-lg-6 pb-2">
+                                    <button (click)="modifier()"
+                                        class="btn btn-danger w-100">Modifier</button>
+                                </div>
+                                <div class="col-lg-6">
+                                    <button mat-stroked-button  [matMenuTriggerFor]="menu" [disabled]="currentProduit.etat!='dispo'"
+                                        class="btn btn-success w-100">Supprimer</button>
+                                    <mat-menu #menu="matMenu" yPosition="below" class="bg-white text-dark">
+                                        <p class="font-weight-bold text-center">Voulez-vous vraiment supprimer <strong>{{currentProduit.titre}}</strong> ?</p>
+                                        <div class="btn-menu-center text-center">
+                                            <button (click)="supprimer()" class="cg4 btn btn-success ">Oui</button>
+                                            <button class="btn btn-danger">Non</button>
+                                        </div>
+                                    </mat-menu>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-danger" *ngIf="currentProduit.etat!='dispo'">Ce service est indisponible !!
+                        </p>
+                        <!--Section commentaires-->
+                        <section class="content-item" id="comments">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                            <div *ngIf="!connecte">
+                                                <h3 class="pull-left">Nouveau commentaire</h3>
+                                                <button *ngIf="auth_client!=null" class="btn btn-success pull-right" (click)="onSubmit(ajcomm.value)"><mat-icon>exposure_plus_1</mat-icon></button>
+                                                <button *ngIf="auth_client==null" class="btn btn-success pull-right" (click)="openDialogAuth()"><mat-icon>exposure_plus_1</mat-icon></button>
+                                                <div class="row">
+                                                    <div class="col-sm-3 col-lg-2 hidden-xs">
+                                                        <img class="img-responsive" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                                                    </div>
+                                                    <div class="form-group col-xs-12 col-sm-9 col-lg-10">
+                                                        <textarea formControlName="description" class="form-control" id="message" placeholder="Ecrivez ici votre commentaire" required=""#ajcomm></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <h3>{{commentaires.length}} commentaires</h3>
+
+                                        <div class="media" *ngFor="let c of commentaires;index as i">
+                                            <img class="media-object"
+                                                src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                                            <div class="media-body">
+                                                <h4 class="media-heading">{{client_comm[i].nom}} {{client_comm[i].prenom}}</h4>
+                                                <p>{{c.description}}</p><br>
+                                                <div class="media-buttons">
+                                                    <button *ngIf="idc==c.idClient" class="btn btn-outline-danger"
+                                                        (click)="supprimerComm(c.id)"><mat-icon>restore_from_trash</mat-icon></button>
+                                                    <button *ngIf="idc==c.idClient" class="btn btn-outline-warning"
+                                                        (click)="opendcomm(c.id)"><mat-icon>loop</mat-icon></button>
+                                                    <button class="btn btn-outline-dark"(click)="opensig(c.id,'commentaire')" *ngIf="auth_client!=null && idc!=c.idClient"><mat-icon>report_problem</mat-icon></button>
+                                                    <button  (click)="openDialogAuth()" *ngIf="auth_client==null" [disabled]="currentProduit.etat!='dispo'" class="btn btn-outline-dark"><mat-icon>report_problem</mat-icon></button>
+                                                    
+                                                    <div [hidden]="sig2" *ngIf="c.id==idcomm">
+                                                        <mat-form-field class="example-full-width" appearance="fill">
+                                                            <mat-label>Description du signalement</mat-label>
+                                                            <input matInput id="sigcomm" #sigcomm>
+                                                          </mat-form-field>
+                                                          <br>
+                                                        <button mat-button class="btn btn-outline-dark" (click)="signaler(sigcomm.value)">signaler</button>
+                                                    </div>
+                                                    <div id="signaleC"></div>
+
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div [hidden]="mod" class="xddf">
+                                            <mat-form-field class="example-full-width" appearance="fill">
+                                                <mat-label>Commentaire</mat-label>
+                                                <input matInput id="modifcomm" #modifcomm>
+                                              </mat-form-field>
+                                            <button mat-button class="btn btn-outline-warning" (click)="modifierComm(modifcomm.value)">modifier</button>
+                                        </div>
+                                        
+                                        <!-- Fin section commentaire -->
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="col-6 border " style="float:right" [hidden]="hide? true:false">
+<app-modifier-service  [id]="currentProduit.id"></app-modifier-service>
+</div>
+
+
+
+
+
+
+
+<div class="col-lg-8 border main-section bg-white" style="float:left;">
+    <div class="row m-0">
+        <div class="col-lg-5 left-side-product-box pb-3">
+            <img src="assets/images/111.jpg" class="border p-3">
+        </div>
+        <div class="col-lg-7">
+            <div class="right-side-pro-detail border p-3 m-0">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="m-0 p-0">Titre : La jolie</p>
+                        <span>Publiée le 26/12/2021</span>
+                    </div>
+                    <div class="col-lg-12 pt-2">
+                        <h5>Détails</h5>
+                        <span>Exemple de portrait personnalisé</span>
+                        <hr class="m-0 pt-2 mt-2">
+                        <div class="col-lg-12">
+                            <p class="m-0 p-0 price-pro"> Prix : 88 DT</p>
+                            <hr class="p-0 m-0">
+                        </div>
+                    </div>
+                    <div class="col-lg-12" *ngIf="currentProduit.cat==1">
+                        <p class="tag-section">
+                            <strong>Artiste : </strong>
+                           Firas ben Ahmed
+                        </p>
+                    </div>
+                    <div *ngIf="!connecte" >
+                        <div class="col-lg-12 mt-3">
+                            <div class="row">
+                                <div class="col-lg-6 pb-2">
+                                    <button (click)="opensig(id,'service')" *ngIf="(auth_client!=null)" [disabled]="currentProduit.etat!='dispo'" class="btn btn-danger w-100">Signaler</button>
+                                    <button  (click)="openDialogAuth()" *ngIf="auth_client==null" [disabled]="currentProduit.etat!='dispo'" class="btn btn-danger w-100">Signaler</button>
+                                </div>
+                                <div class="col-lg-6">
+                                    <button  (click)="openDialog()" *ngIf="auth_client!=null" [disabled]="currentProduit.etat!='dispo'" class="btn btn-success w-100">Commander</button>
+                                    <button  (click)="openDialogAuth()" *ngIf="auth_client==null" [disabled]="currentProduit.etat!='dispo'" class="btn btn-success w-100">Commander</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div [hidden]="sig">
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Description du signalement</mat-label>
+                            <input matInput id="sigcomm" #sigcomm>
+                          </mat-form-field>
+                          <br>
+                        <button mat-button class="btn btn-outline-dark" (click)="signaler(sigcomm.value)">signaler</button>
+                    </div>
+                    <div id="signaleS"></div>
+
+                    <div *ngIf="connecte">
+                        <div class="row">
+                            <div class="col-lg-6 pb-2">
+                                <button (click)="modifier()"
+                                    class="btn btn-danger w-100">Modifier</button>
+                            </div>
+                            <div class="col-lg-6">
+                                <button mat-stroked-button  [matMenuTriggerFor]="menu" [disabled]="currentProduit.etat!='dispo'"
+                                    class="btn btn-success w-100">Supprimer</button>
+                                <mat-menu #menu="matMenu" yPosition="below" class="bg-white text-dark">
+                                    <p class="font-weight-bold text-center">Voulez-vous vraiment supprimer <strong>{{currentProduit.titre}}</strong> ?</p>
+                                    <div class="btn-menu-center text-center">
+                                        <button (click)="supprimer()" class="cg4 btn btn-success ">Oui</button>
+                                        <button class="btn btn-danger">Non</button>
+                                    </div>
+                                </mat-menu>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-danger" *ngIf="currentProduit.etat!='dispo'">Ce service est indisponible !!
+                    </p>
+                    <!--Section commentaires-->
+                    <section class="content-item" id="comments">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                        <div *ngIf="!connecte">
+                                            <h3 class="pull-left">Nouveau commentaire</h3>
+                                            <button *ngIf="auth_client!=null" class="btn btn-success pull-right" (click)="onSubmit(ajcomm.value)"><mat-icon>exposure_plus_1</mat-icon></button>
+                                            <button *ngIf="auth_client==null" class="btn btn-success pull-right" (click)="openDialogAuth()"><mat-icon>exposure_plus_1</mat-icon></button>
+                                            <div class="row">
+                                                <div class="col-sm-3 col-lg-2 hidden-xs">
+                                                    <img class="img-responsive" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                                                </div>
+                                                <div class="form-group col-xs-12 col-sm-9 col-lg-10">
+                                                    <textarea formControlName="description" class="form-control" id="message" placeholder="Your message" required=""#ajcomm></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <h3>{{commentaires.length}} commentaires</h3>
+
+                                    <div class="media" *ngFor="let c of commentaires;index as i">
+                                        <img class="media-object"
+                                            src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                                        <div class="media-body">
+                                            <h4 class="media-heading">{{client_comm[i].nom}} {{client_comm[i].prenom}}</h4>
+                                            <p>{{c.description}}</p><br>
+                                            <div class="media-buttons">
+                                                <button *ngIf="idc==c.idClient" class="btn btn-outline-danger"
+                                                    (click)="supprimerComm(c.id)"><mat-icon>restore_from_trash</mat-icon></button>
+                                                <button *ngIf="idc==c.idClient" class="btn btn-outline-warning"
+                                                    (click)="opendcomm(c.id)"><mat-icon>loop</mat-icon></button>
+                                                <button class="btn btn-outline-dark"(click)="opensig(c.id,'commentaire')" *ngIf="auth_client!=null && idc!=c.idClient"><mat-icon>report_problem</mat-icon></button>
+                                                <button  (click)="openDialogAuth()" *ngIf="auth_client==null" [disabled]="currentProduit.etat!='dispo'" class="btn btn-outline-dark"><mat-icon>report_problem</mat-icon></button>
+                                                
+                                                <div [hidden]="sig2" *ngIf="c.id==idcomm">
+                                                    <mat-form-field class="example-full-width" appearance="fill">
+                                                        <mat-label>Description du signalement</mat-label>
+                                                        <input matInput id="sigcomm" #sigcomm>
+                                                      </mat-form-field>
+                                                      <br>
+                                                    <button mat-button class="btn btn-outline-dark" (click)="signaler(sigcomm.value)">Signaler</button>
+                                                </div>
+                                                <div id="signaleC"></div>
+
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div [hidden]="mod" class="xddf">
+                                        <mat-form-field class="example-full-width" appearance="fill">
+                                            <mat-label>Commentaire</mat-label>
+                                            <input matInput id="modifcomm" #modifcomm>
+                                          </mat-form-field>
+                                        <button mat-button class="btn btn-outline-warning" (click)="modifierComm(modifcomm.value)">Modifier</button>
+                                    </div>
+                                    
+                                    <!-- Fin section commentaire -->
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-6 border " style="float:right" [hidden]="hide? true:false">
+<app-modifier-service  [id]="currentProduit.id"></app-modifier-service>
+</div>

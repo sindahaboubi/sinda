@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<!--
+Template Name: Sislaf
+Author: <a href="https://www.os-templates.com/">OS Templates</a>
+Author URI: https://www.os-templates.com/
+Copyright: OS-Templates.com
+Licence: Free to use under our free template licence terms
+Licence URI: https://www.os-templates.com/template-terms
+-->
+<html lang="">
+<!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
+<head>
+<title>Sislaf</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+<body id="top">
+
+<!-- Top Background Image Wrapper -->
+<div class="bgded overlay" style="background-image:url('assets/images/1.jpg');"> 
+  
+  <div id="pageintro" class="hoc clear"> 
+    <article>
+      <h3 class="heading">Bienvenue dans notre communauté artistique</h3>
+      <p>L'Art ne fait pas qu'illustrer, il fait vivre</p>
+      <footer>
+        <ul class="nospace inline pushright">
+          <li><button class="btn" *ngIf="!connecte" (click)="openDialogInsc()" >S'inscrire</button></li>
+          <li><button class="btn inverse" *ngIf="!connecte" (click)="openDialog()">Se connecter</button></li>
+        </ul>
+      </footer>
+    </article>
+  </div>
+</div>
+
+<section class="offer_section layout_padding">
+  <h1 class="categ">Découvrir nos catégories</h1>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-5 px-0">
+        <div class="box offer-box1">
+          <img src="assets/images/111.jpg" alt="">
+          <div class="detail-box">
+            <h2>
+              Peinture
+            </h2>
+            <a href="">
+              Consulter
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 px-0">
+        <div class="box offer-box2">
+          <img src="assets/images/photographie1.jpg" alt="">
+          <div class="detail-box">
+            <h2>
+                Photographie
+            </h2>
+            <a href="">
+              Consulter
+            </a>
+          </div>
+        </div>
+        <div class="box offer-box3">
+          <img src="assets/images/poeme.jpg" alt="">
+          <div class="detail-box">
+            <h2>
+              Poéme
+            </h2>
+            <a href="">
+              Consulter
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 px-0">
+          <div class="box offer-box2">
+            <img src="assets/images/musique.jpg" alt="">
+            <div class="detail-box">
+              <h2>
+                Musique
+              </h2>
+              <a href="">
+                Consulter
+              </a>
+            </div>
+          </div>
+          <div class="box offer-box3">
+            <img src="assets/images/sculpture.jpg" alt="">
+            <div class="detail-box">
+              <h2>
+                Sculpture
+              </h2>
+              <a href="">
+                Consulter
+              </a>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="bgded overlay" style="background-image:url('assets/images/111.jpg');">
+  <section id="splitfifty" class="hoc container clear">
+    <div class="sectiontitle">
+      <p class="heading font-x2"><strong>ArtSpace</strong>, un des leaders tunisiens de la vente de services<br>
+        artistiques personnalisés.
+      </p>
+    </div>
+    <div class="bgded clear" style="background-image:url('assets/images/peinture.jpg');"> 
+      <article>
+        <h6 class="heading font-x2">Notre mission est de faciliter la découverte et
+          l’acquisition d’œuvres des services artistiques, grâce au digital.</h6>
+        <p> ArtSpace rassemble des œuvres d’artistes tunisiens 
+          et de jeunes talents sur des supports aussi variés que 
+          la peinture, la sculpture, la photographie, la musique ou les poèmes.</p>
+        <footer><a class="btn" routerLink="/about">Lire plus à propos de nous</a></footer>
+      </article>
+    </div>
+  </section>
+</div>
+
+<section id="team" class="team">
+  <div class="containe hoc container clearr">
+    <div class="sectiontitle">
+      <p class="nospace font-xs">Meuilleurs ventes</p>
+      <p class="heading underline font-x2">Les meuilleurs coups de cœur des artistes</p>
+    </div>
+    <div class="row" style="text-align:center">
+      <div id="iteme" class="col-lg-3 col-md-6 d-flex align-items-stretch" *ngFor="let ser of tabService;index as i">
+        <div class="member" data-aos="fade-up" data-aos-delay="100" *ngIf="i<=3">
+          <div class="member-img">
+            <img [src]="ser.image" class="img-fluid" alt="">
+          </div>
+          <div class="member-info">
+            <h3>{{ser.idArtiste}}</h3>
+            <h4>{{ser.titre}}</h4>
+            <div *ngFor="let c of categories">
+              <em *ngIf="c.id==ser.cat">{{c.libelle}}</em><br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><br>
+    <footer><a class="btn" href="#" style="position:relative;right:-480px" routerLink="/liste">Découvrir plus</a></footer>
+  </div>
+  <app-footer></app-footer>
+</section>
+
+<a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
+<script src="assets/scripts/jquery.min.js"></script>
+<script src="assets/scripts/jquery.backtotop.js"></script>
+<script src="assets/scripts/jquery.mobilemenu.js"></script>
+</body>
+</html>
+
+

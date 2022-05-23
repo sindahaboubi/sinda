@@ -1,0 +1,50 @@
+
+<div style="display:inline;">
+<img src="./../../../assets/logo.png" width="90" height="90" style="border:2px solid black;"/>
+<h4>ArtSpace</h4>
+</div>
+<p class="badge m-1  bg-warning">ce service realiser par : {{data.artiste.nom}} </p>
+<br>
+<h1 mat-dialog-title style="text-align:center;"><ins>Commande pour {{data.client.nom}} {{data.client.prenom}}</ins></h1>
+<mat-dialog-actions  align="end">
+    
+    <p class="text-center  family-font"> Mr <span class="text-info">{{data.client.nom}} </span>Merci d'avoir choisir un service chez nous. 
+    Votre soutien compte beaucoup pour nous <span class="text-info">ArtSpace </span>. 
+    N'hésitez pas à revenir vers nous pour 
+    nous dire ce que vous pensez de votre service <span class="text-info">{{data.service.titre}} </span>
+    . Vous recevrais une facture sur votre mail : <a href="https://accounts.google.com/AccountChooser/signinchooser?service=mail&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&flowName=GlifWebSignIn&flowEntry=AccountChooser" class="text-info">{{data.client.email}} </a> </p>
+
+    <br>
+
+    <form [formGroup]="commandeForm"  >
+        <mat-form-field class="example-full-width w-100" appearance="fill">
+            <mat-label>vos suggestion</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+          </mat-form-field>
+    <br>
+    <table class="table">
+        <thead class="text-left">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">image</th>
+            <th scope="col">titre</th>
+            <th scope="col">description</th>
+            <th scope="col">prix</th>
+          </tr>
+        </thead>
+        <tbody class="text-left">
+          <tr>
+            <th scope="row">{{data.service.id}}</th>
+            <td><img [src]="data.service.image" alt="lg-s" height="50" width="80"/></td>
+            <td>{{data.service.titre}}</td>
+            <td>{{data.service.description}}</td>
+            <td>{{data.service.prix|number:'2.3'}}TND</td>
+          </tr>
+        </tbody>
+    </table>
+<div id="resultat"></div>
+    
+    <button mat-button class="btn btn-dark" id="close"(click)="onNoClick()">annuler</button>
+    <button mat-button (click)="commander()" [disabled]="verifCommande||verifFacture" class="btn btn-primary m-3"cdkFocusInitial>Valider</button>
+</form>  
+</mat-dialog-actions>

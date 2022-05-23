@@ -1,0 +1,258 @@
+{
+  "services": [
+    {
+      "idArtiste": 1,
+      "description": "exemple de portrait",
+      "prix": "45",
+      "titre": "supernova",
+      "dateCrea": "2022-02-09",
+      "etat": "indispo",
+      "cat": 1,
+      "image": "assets/img1.jpg",
+      "id": 1
+    },
+    {
+      "idArtiste": 1,
+      "description": "exemple de portrait2",
+      "prix": "70",
+      "titre": "supernova2",
+      "dateCrea": "2022-02-09",
+      "etat": "dispo",
+      "cat": 1,
+      "image": "assets/img1.jpg",
+      "id": 2
+    }
+  ],
+  "categorie": [
+    {
+      "id": 1,
+      "libelle": "test1"
+    },
+    {
+      "id": 2,
+      "libelle": "test2"
+    }
+  ],
+  "commentaire": [
+    {
+      "id": 2,
+      "idClient": 4,
+      "idService": 1,
+      "description": "Exemple de commentaire"
+    },
+    {
+      "id": 7,
+      "idClient": 3,
+      "idService": 2,
+      "description": "Exemple de commentaire"
+    },
+    {
+      "id": 3,
+      "idClient": 7,
+      "idService": 1,
+      "description": "Exemple de commentaire"
+    },
+    {
+      "id": 4,
+      "idClient": 9,
+      "idService": 1,
+      "description": "Exemple de commentaire"
+    },
+    {
+      "id": 5,
+      "idClient": 1,
+      "idService": "1",
+      "description": "test"
+    },
+    {
+      "id": 11,
+      "idClient": 1,
+      "idService": "2",
+      "description": "null1"
+    },
+    {
+      "id": 8,
+      "idClient": 1,
+      "idService": 1,
+      "description": "test"
+    },
+    {
+      "id": 9,
+      "idClient": 1,
+      "idService": 2,
+      "description": "bon travail !"
+    },
+    {
+      "id": 10,
+      "idClient": 1,
+      "idService": 2,
+      "description": "bon travail !"
+    },
+    {
+      "id": 11,
+      "idClient": 1,
+      "idService": 2,
+      "description": "null"
+    }
+  ],
+  "signalement": [
+    {
+      "id": 1,
+      "idClient": 1,
+      "idService": null,
+      "idCommentaire": 1,
+      "description": "ssss"
+    },
+    {
+      "id": 2,
+      "idClient": 1,
+      "idService": "1",
+      "idCommentaire": null,
+      "description": "dddd"
+    },
+    {
+      "id": 3,
+      "idClient": 1,
+      "idService": null,
+      "idCommentaire": 3,
+      "description": "nullle"
+    },
+    {
+      "id": 4,
+      "idClient": 0,
+      "idService": "1",
+      "idCommentaire": null,
+      "description": "non"
+    }
+  ],
+  "clients": [
+    {
+      "id": 1,
+      "email": "rab.mariem@gmail.com",
+      "password": "client",
+      "nom": "Abidi",
+      "prenom": "amine",
+      "dateNaissance": "2022-05-11T20:14:04.860Z",
+      "genre": "h",
+      "etat": false,
+      "image": ""
+    },
+    {
+      "id": 2,
+      "email": "siwar14@gmail.com",
+      "password": "siwar147",
+      "nom": "Ouni",
+      "prenom": "Siwar",
+      "dateNaissance": "1995-05-08T21:12:09.471Z",
+      "genre": "f",
+      "etat": "client",
+      "image": "/assets/client/c1.jpg"
+    },
+    {
+      "id": 3,
+      "email": "azda@asfa.ccc",
+      "password": "azdaz5",
+      "nom": "sqda",
+      "prenom": "zfazf",
+      "dateNaissance": "2022-05-05",
+      "genre": "h",
+      "etat": false,
+      "image": "123"
+    }
+  ],
+  "artistes": [
+    {
+      "id": 1,
+      "email": "artiste",
+      "password": "artiste",
+      "nom": "artiste",
+      "prenom": "artiste",
+      "dateNaissance": "artiste",
+      "genre": "artiste",
+      "etat": "artiste"
+    },
+    {
+      "id": 2,
+      "email": "selmiArt14@gmail.com",
+      "password": "artiste",
+      "nom": "ben ahmed",
+      "prenom": "karim",
+      "dateNaissance": "1995-05-08T21:12:09.471Z",
+      "genre": "h",
+      "etat": "artiste"
+    },
+    {
+      "id": 3,
+      "email": "azda@asfa.ccc",
+      "password": "azdaz5",
+      "nom": "sqda",
+      "prenom": "zfazf",
+      "dateNaissance": "2022-05-05",
+      "genre": "h",
+      "etat": false,
+      "image": "123"
+    }
+  ],
+  "commandes": [
+    {
+      "idClient": 1,
+      "idService": 2,
+      "idArtiste": 2,
+      "description": "commande artiste 2",
+      "dateCommande": "2022-05-08T18:28:04.359Z",
+      "id": 1
+    },
+    {
+      "idClient": 2,
+      "idService": 4,
+      "idArtiste": 1,
+      "description": "commande 1",
+      "dateCommande": "2022-05-08T18:28:04.359Z",
+      "id": 1
+    },
+    {
+      "idClient": 3,
+      "idService": 2,
+      "idArtiste": 1,
+      "description": "commande num 1",
+      "dateCommande": "2021-05-08T18:28:04.359Z",
+      "id": 2
+    },
+    {
+      "idClient": 4,
+      "idService": 4,
+      "idArtiste": 1,
+      "description": "premiere commande",
+      "dateCommande": "2020-12-08T18:28:04.359Z",
+      "id": 3
+    },
+    {
+      "idClient": 1,
+      "idService": 2,
+      "description": "xxxxxx",
+      "dateCommande": "2022-05-12T11:55:22.423Z",
+      "id": 4
+    },
+    {
+      "idClient": 1,
+      "idService": 2,
+      "description": "",
+      "dateCommande": "2022-05-14T22:33:56.922Z",
+      "id": 5
+    }
+  ],
+  "factures": [
+    {
+      "idCommande": 1,
+      "id": 1
+    },
+    {
+      "idCommande": 4,
+      "id": 2
+    },
+    {
+      "idCommande": 5,
+      "id": 3
+    }
+  ]
+}

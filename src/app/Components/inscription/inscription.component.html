@@ -1,0 +1,99 @@
+  <section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-12 col-lg-10">
+					<div class="wrap d-md-flex">
+						<div class="img" style="background-image: url(assets/images/inscription.jpg);">
+			      </div>
+						<div class="login-wrap p-4 p-md-5">
+			      	<div class="d-flex">
+			      		<div class="w-100">
+			      			<h3 class="mb-4">Inscription</h3>
+                  <span class="w-100qu">Vous-avez déjà un compte ? </span><br>
+                  <a href="" class="w-100-connex">Se connecter</a>
+			      		</div>
+			      	</div>
+
+				<form class="signin-form" [formGroup]="formInscri" (ngSubmit)="onSubmit()">
+			      		<div class="form-group mb-3">
+			      			<label class="label" for="photo">Photo de profil</label>
+			      			<input type="text" class="form-control" placeholder="Photo de profil" formControlName="image" required>
+                  <div *ngIf="image.invalid && image.touched" class="alert alert-danger">
+                    L'image est obligatoire !
+                  </div>
+			      		</div>
+
+		            <div class="form-group mb-3">
+		            	<label class="label" for="nom">Nom</label>
+		              <input type="text" class="form-control" placeholder="Nom" formControlName="nom" required>
+                  <div *ngIf="nom.invalid && nom.touched" class="alert alert-danger">
+                    Le nom est obligatoire !
+                  </div>
+		            </div>
+
+                <div class="form-group mb-3">
+		            	<label class="label" for="nom">Prénom</label>
+		              <input type="text" class="form-control" placeholder="Prenom" formControlName="prenom" required>
+                  <div *ngIf="prenom.invalid && prenom.touched" class="alert alert-danger">
+                    Le prénom est obligatoire !
+                  </div>
+		            </div>
+
+                <div class="form-group mb-3">
+		            	<label class="label" for="datenaiss">Date de naissance</label>
+		              <input type="date" class="form-control" formControlName="dateNaissance" required>
+                  <div *ngIf="dateNaissance.invalid && dateNaissance.touched" class="alert alert-danger">
+                    La date de naissance est obligatoire !
+                  </div>
+		            </div>
+
+                <div class="form-group mb-3">
+		              <input type="radio" class="form-check-label" value="h" formControlName="genre" required>Homme
+                  <input type="radio" class="form-check-label" value="f" formControlName="genre" required>Femme
+                  <div *ngIf="genre.invalid && genre.touched" class="alert alert-danger">
+                    Le genre est obligatoire !
+                  </div>
+		            </div>
+
+                <div class="form-group mb-3">
+		            	<label class="label" for="E-mail">E-mail</label>
+		              <input type="email" class="form-control" formControlName="email" required>
+                  <div *ngIf="email.invalid && email.touched" class="alert alert-danger">
+                    L'e-mail est obligatoire !
+                  </div>
+		            </div>
+
+                <div class="form-group mb-3">
+		            	<label class="label">Mot de passe</label>
+		              <input type="email" class="form-control" placeholder="Mot de passe" formControlName="password" required>
+                  <div *ngIf="password.invalid && password.touched" class="alert alert-danger">
+                    Le mot de passe est obligatoire !
+                  </div>
+		            </div>
+
+                <div class="form-group mb-3">
+		            	<label class="label">Type d'utilisateur</label><br>
+		              <input type="radio" value="client" class="form-check-label" formControlName="type" required>Client
+                  <input type="radio" value="artiste" class="form-check-label" formControlName="type" required>Artiste
+                  <div *ngIf="type.invalid && type.touched" class="alert alert-danger">
+                    Le type d'utilisateur est obligatoire !
+                  </div>
+		            </div>
+
+		            <div class="boutons">
+		            	<button type="submit" class="btn btn-success btn1">S'inscrire</button>
+                  <button type="submit" class="btn btn-danger btn2" (click)="onNoClick()">Annuler</button>
+		            </div>
+		          </form>
+		        </div>
+		      </div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/popper.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/main.js"></script>
+

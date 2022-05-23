@@ -1,0 +1,47 @@
+<div  style="margin:1%" >
+<h4>Modification des informations du service</h4>
+
+<form [formGroup]="modifForm" (ngSubmit)="onSubmit()" class="text-center">
+    <mat-form-field appearance="fill">
+        <mat-label>Description: </mat-label>
+        <input matInput value="{{s.description}}" formControlName="description" required>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Prix: </mat-label>
+        <input matInput formControlName="prix" required>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Titre: </mat-label>
+        <input matInput formControlName="titre" required>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Etat: </mat-label>
+        <mat-select required formControlName="etat">
+          <mat-option value="dispo">Disponible</mat-option>
+          <mat-option value="indispo">Non disponible</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Categorie: </mat-label>
+        <mat-select formControlName="cat" required>
+          <mat-option *ngFor="let c of categories" [value]="c.id">
+            {{c.libelle}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Image: </mat-label>
+        <input matInput formControlName="image" required>
+      </mat-form-field>
+      <br>
+    <button type="submit" class="btn btn-outline-primary" [disabled]="modifForm.invalid" >
+     Enregistrer
+    </button>
+</form>
+
+</div>

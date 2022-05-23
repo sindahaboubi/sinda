@@ -1,0 +1,21 @@
+<h1>Liste des commandes</h1>
+<table class="table table-striped table-hover" >
+    <thead style="background-color:rgb(209, 221, 235)">
+        <tr>
+            <th>Numéro Commande</th>
+            <th>ID Client</th>
+            <th>Numéro Service</th>
+            <th>Description</th>
+            <th>Date Commande</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let c of commandes">
+            <td >{{c.id}}</td>
+            <td >{{c.idClient}}</td>
+            <td >{{c.idService}}</td>
+            <td >{{c.description}}</td>
+            <td >{{c.dateCommande |date:"dd-MM-yyyy"}}</td>
+        </tr>
+    </tbody>
+</table>

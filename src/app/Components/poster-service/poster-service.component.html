@@ -1,0 +1,66 @@
+
+<div class="card w-50" style="margin-left:30%;margin-top:2%;" >
+    <div class="card-header">
+    <h1>Ajouter votre Service</h1>
+    </div>
+    <form class="card-body" [formGroup]="ajouterService" >
+        <div class="form-group">
+          <label for="tit">Titre</label>
+          <input type="text" formControlName="titre" class="form-control w-50" id="tit" aria-describedby="emailHelp" >
+          <small id="emailHelp" class="form-text text-muted">soyez creative en choix du titre</small>
+          <div class="alert alert-danger d-flex w-50 align-items-center" role="alert" *ngIf="titre.invalid && titre.touched">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              le titre est obligatoire
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="prix">Prix</label>
+          <input type="number" formControlName="prix" class="form-control w-50" id="prix" min="1" placeholder="0000.00000"><br>
+          <div class="alert alert-danger d-flex w-50 align-items-center" role="alert" *ngIf="prix.invalid && prix.touched">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              le prix est obligatoire
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="img">Lien de image</label>
+            <input type="text"  formControlName="image" class="form-control w-50" id="larg" placeholder="exemple/test.jpg">
+            <br>
+            <div class="alert alert-danger d-flex w-50 align-items-center" role="alert" *ngIf="image.invalid && image.touched">
+              <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+              <div>
+                une image est necessaire pour la presentation de ton service
+              </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="des">Description</label>
+            <textarea formControlName="description" class="form-control w-50" row="6" id="des" placeholder="..."></textarea>
+            <br>
+            <div class="alert alert-danger d-flex w-50 align-items-center" role="alert" *ngIf="description.invalid && description.touched">
+              <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+              <div>
+                une description  est obligatoire
+              </div>
+            </div>
+        </div>
+        
+        <br>
+        <p>Categorie :</p>
+        <div class="form-check" *ngFor="let cati of categories">
+          <label class="form-check-label" for="c">{{cati.libelle}}</label>
+          <input type="radio" formControlName="cat" name="r1" [value]="cati.id" class="form-check-input" id="c" />
+        </div>
+        <br>
+        <div class="card-footer">
+        <button type="submit" class="btn btn-success" [disabled]="ajouterService.invalid" (click)="onSubmit()">Ajouter</button>
+        <button type="reset" class="btn btn-danger">annuler</button>
+        </div>
+       <div id="result"></div>
+    </form>
+    <a routerLink="/liste">retour</a>
+    </div>
+

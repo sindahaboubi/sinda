@@ -1,0 +1,76 @@
+<footer>
+   <div class="row primary">
+     <div class="column about">
+   
+     <h3>ArtSpace</h3>
+   
+      <p>
+         ArtSpace est une plateforme dédiée à la vente d'œuvres d'art personnalisé en ligne. 
+         Exposez vos œuvres sur Internet.
+     </p>
+   
+     <div class="social">
+      <i class="fab fa-facebook-f"></i>
+       <i class="fa-brands fa-instagram-square"></i>
+       <i class="fa-brands fa-twitter-square"></i>
+       <i class="fa-brands fa-youtube-square"></i>
+       <i class="fa-brands fa-whatsapp-square"></i>
+     </div>
+   </div>
+   
+   <div class="column links">
+   <h3>A propos</h3>
+    <ul>
+     <li>
+      <a routerLink="/about">Qui sommes-nous ?</a>
+     </li>
+     <li>
+      <a href="#terms-of-services">Comment ça marche ?</a>
+     </li>
+     <li>
+      <a href="#cookies-policy">Contactez-nous</a>
+     </li>
+    </ul>
+   </div>
+   
+   
+   <div class="column links">
+     <h3>Oeuvres</h3>
+      <ul>
+       <li>
+        <a href="#cookies-policy">Peinture</a>
+       </li>
+       <li>
+       <a href="#terms-of-services">Photographie</a>
+       </li>
+       <li>
+       <a href="#support">Musique</a>
+       </li>
+       <li>
+         <a href="#support">Poéme</a>
+      </li>
+      <li>
+         <a href="#support">Sculpture</a>
+      </li>
+     </ul>
+   </div>
+   
+   <div class="column links">
+      <h3>Mon compte</h3>
+       <ul>
+        <li>
+         <div *ngIf="client!=null"><a [routerLink]="['/client',client.id]" >Mes informations</a></div>
+         <div *ngIf="artiste!=null"><a [routerLink]="['/artiste',artiste.id]">Mes informations</a></div>
+        </li>
+        <li>
+        <a href="#terms-of-services">Mes commandes</a>
+        </li>
+      </ul>
+    </div>
+   
+   </div>
+   
+   <div class="row copyright">
+      <p>Copyright &copy; 2022 Developer</p>
+   </div>
+   </footer>
